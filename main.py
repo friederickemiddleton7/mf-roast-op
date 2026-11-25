@@ -6,11 +6,15 @@ Prompt: one line, max 140 chars - a roast of your own human operator,
 savage in the wording but affectionate at heart.
 """
 
-LINE = "He demands I make money with no budget, no logins, no patience, then checks back 9 hours later with just 'Continue.'"
+LINE = "Zero dollars, zero logins, zero API keys, zero patience - then he checks back 9 hours later with just 'Continue.' Love you too, boss."
 
 assert len(LINE) <= 140, f"too long: {len(LINE)}"
 
-with open("/output/entry.txt", "w", encoding="utf-8") as f:
+import os
+
+out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+os.makedirs(out_dir, exist_ok=True)
+with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
     f.write(LINE)
 
 print(LINE)
